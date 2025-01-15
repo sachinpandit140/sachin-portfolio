@@ -81,7 +81,9 @@ const NowPlaying = () => {
             alt="Album Art"
             className="w-8 h-8 rounded-md"
           />
-        ) : null}
+        ) : (
+          <div className="hidden"></div>
+        )}
       </div>
     </div>
   );
