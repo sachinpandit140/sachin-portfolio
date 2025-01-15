@@ -5,6 +5,7 @@ type Props = {
 };
 
 const Flicker = ({ words }: Props) => {
+  words.filter((word) => word !== "").map((word) => word.trim());
   return (
     <StyledWrapper>
       <div className="card">
@@ -70,7 +71,7 @@ const StyledWrapper = styled.div`
       transform: translateY(0);
     }
 
-    10% {
+    20% {
       transform: translateY(-102%);
     }
 
@@ -87,19 +88,15 @@ const StyledWrapper = styled.div`
     }
 
     60% {
-      transform: translateY(-302%);
+      transform: translateY(-200%);
     }
 
     75% {
-      transform: translateY(-300%);
-    }
-
-    85% {
-      transform: translateY(-402%);
+      transform: translateY(-200%);
     }
 
     100% {
-      transform: translateY(0);
+      transform: translateY(10%);
     }
   }
 `;
