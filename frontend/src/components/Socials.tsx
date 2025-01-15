@@ -29,7 +29,7 @@ const socials = [
 
 export const Socials = () => {
   return (
-    <section id="socials" className="py-20 bg-white">
+    <section id="socials" className="py-20 max-h-50px">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-16">Let's Connect</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">

@@ -4,8 +4,11 @@ import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || '';
-const RESUME_URL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/resume` : '/resume';
+const API_URL = import.meta.env.VITE_API_URL || "";
+const RESUME_URL = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/public/resume`
+  : "/public/resume";
+console.log("API_URL:", API_URL);
 
 const navItems = [
   { id: "hero", label: "Home" },
@@ -48,22 +51,35 @@ const NowPlaying = () => {
   return (
     <div className="flex items-center px-4 py-2 text-sm text-secondary-dark hover:text-primary transition-colors rounded-md">
       <div className="flex items-center space-x-2">
-        <div className={`w-3 h-3 ${song.playing ? 'bg-green-500' : 'bg-gray-400'} rounded-full ${song.playing ? 'animate-pulse' : ''}`} />
-        <span>Currently Playing on Spotify:</span>
-        {song.playing ? (
-          <a 
-            href={song.link} 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline truncate max-w-[150px]"
-          >
-            {song.song} - {song.artist}
-          </a>
-        ) : (
-          <span className="text-gray-500 italic">
-            {song.message || 'Not playing'}
+        <div
+          className={`w-3 h-3 ${
+            song.playing ? "bg-green-500" : "bg-gray-400"
+          } rounded-full ${song.playing ? "animate-pulse" : ""}`}
+        />
+        <div className="flex flex-col space-y-1">
+          <span className="text:overflow-elipsis">
+            Currently Playing on Spotify:
           </span>
-        )}
+          {song.playing ? (
+            <a
+              href={song.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline truncate max-w-[150px]"
+            >
+              {song.song} - {song.artist}
+            </a>
+          ) : (
+            <span className="text-gray-500 italic">
+              {song.message || "Not playing"}
+            </span>
+          )}
+        </div>
+        <img
+          src={song.albumArt}
+          alt="Album Art"
+          className="w-10 h-10 rounded-sm shadow-sm"
+        />
       </div>
     </div>
   );
@@ -74,7 +90,7 @@ export const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm shadow-sm z-50">
-      <nav className="container mx-auto px-6">
+      <nav className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link
             to="hero"
@@ -93,7 +109,7 @@ export const Header = () => {
                 spy={true}
                 smooth={true}
                 offset={-64}
-                className="px-4 py-2 text-secondary-dark hover:text-primary cursor-pointer transition-colors rounded-md"
+                className="px-4 py-2 text-secondary-dark hover:bg-primary-light hover:text-gray-50 cursor-pointer transition-colors rounded-md"
                 activeClass="text-primary bg-primary-light/10 font-medium"
               >
                 {item.label}
@@ -112,6 +128,9 @@ export const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <NowPlaying />
+          </div>
           <button
             className="md:hidden p-2 text-primary"
             onClick={() => setIsOpen(!isOpen)}
@@ -159,7 +178,6 @@ export const Header = () => {
       </nav>
     </header>
   );
-}
-
+};
 
 export default Header;
