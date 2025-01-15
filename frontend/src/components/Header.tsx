@@ -75,11 +75,13 @@ const NowPlaying = () => {
             </span>
           )}
         </div>
-        <img
-          src={song.albumArt}
-          alt="Album Art"
-          className="w-10 h-10 rounded-sm shadow-sm"
-        />
+        {song.albumArt ? (
+          <img
+            src={song.albumArt}
+            alt="Album Art"
+            className="w-8 h-8 rounded-md"
+          />
+        ) : null}
       </div>
     </div>
   );
