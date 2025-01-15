@@ -8,7 +8,6 @@ const API_URL = import.meta.env.VITE_API_URL || "";
 const RESUME_URL = import.meta.env.VITE_API_URL
   ? `${import.meta.env.VITE_API_URL}/public/resume`
   : "/public/resume";
-console.log("API_URL:", API_URL);
 
 const navItems = [
   { id: "hero", label: "Home" },
