@@ -49,7 +49,7 @@ const NowPlaying = () => {
   if (!song) return null;
 
   return (
-    <div className="flex items-center px-4 py-2 text-sm text-secondary-dark hover:text-primary transition-colors rounded-md">
+    <div className="flex items-center px-2 text-sm text-secondary-dark hover:text-primary transition-colors rounded-md">
       <div className="flex items-center space-x-2">
         <div
           className={`w-3 h-3 ${
@@ -57,15 +57,13 @@ const NowPlaying = () => {
           } rounded-full ${song.playing ? "animate-pulse" : ""}`}
         />
         <div className="flex flex-col space-y-1">
-          <span className="text:overflow-elipsis">
-            Currently Playing on Spotify:
-          </span>
+          <span className="truncate">Currently Playing on Spotify:</span>
           {song.playing ? (
             <a
               href={song.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:underline truncate max-w-[150px]"
+              className="hover:underline truncate max-w-[150px] md:max-w-none"
             >
               {song.song} - {song.artist}
             </a>
@@ -75,14 +73,12 @@ const NowPlaying = () => {
             </span>
           )}
         </div>
-        {song.albumArt ? (
+        {song.albumArt && (
           <img
             src={song.albumArt}
             alt="Album Art"
             className="w-8 h-8 rounded-md"
           />
-        ) : (
-          <div className="hidden"></div>
         )}
       </div>
     </div>

@@ -24,7 +24,7 @@ const Flicker = ({ words }: Props) => {
 
 const StyledWrapper = styled.div`
   .card {
-    background-color: var(--bg-color);
+    background-color: transparent;
     padding-top: 1rem;
     border-radius: 1.25rem;
   }
